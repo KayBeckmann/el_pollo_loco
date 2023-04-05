@@ -38,25 +38,13 @@ class World {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
     this.enviroment.forEach((e) => {
-      this.ctx.drawImage(e.img, e.x, e.y, e.width, e.height);
+      this.addToMap(e);
     });
 
-    this.ctx.drawImage(
-      this.character.img,
-      this.character.x,
-      this.character.y,
-      this.character.width,
-      this.character.height
-    );
+    this.addToMap(this.character);
 
     this.enemies.forEach((enemie) => {
-      this.ctx.drawImage(
-        enemie.img,
-        enemie.x,
-        enemie.y,
-        enemie.width,
-        enemie.height
-      );
+      this.addToMap(enemie);
     });
 
     let self = this; //'This' kann nicht an Callback direkt übergeben werden
@@ -64,5 +52,9 @@ class World {
     requestAnimationFrame(function () {
       self.draw();
     });
+  }
+
+  addToMap(mo) {
+    this.ctx.drawImage(mo.img, mo.x, mo.y, mo.width, mo.height);
   }
 }
