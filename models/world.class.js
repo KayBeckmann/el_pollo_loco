@@ -50,23 +50,30 @@ class World {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
     //Draw the Clouds and Background
-    this.enviroment.forEach((e) => {
-      this.addToMap(e);
-    });
+    this.addObjectsToMap(this.enviroment);
 
     //Draw the Player
     this.addToMap(this.character);
 
     //Draw the Enemies
-    this.enemies.forEach((enemie) => {
-      this.addToMap(enemie);
-    });
+    this.addObjectsToMap(this.enemies);
 
-    let self = this; //'This' kann nicht an Callback direkt übergeben werden
+    //'This' kann nicht an Callback direkt übergeben werden
+    let self = this;
 
     //Callback-Recursion damit der PC nicht abstürzt -> Recursion führt zu unzulässiger Endlosschleife
     requestAnimationFrame(function () {
       self.draw();
+    });
+  }
+
+  /**
+   *
+   * @param {OBJECT} objects Array of Elements to draw
+   */
+  addObjectsToMap(objects) {
+    objects.forEach((object) => {
+      this.addToMap(object);
     });
   }
 
