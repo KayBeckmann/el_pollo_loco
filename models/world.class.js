@@ -13,13 +13,6 @@ class World {
       canvas.height
     ),
     new Enviroment(
-      "img/5_background/layers/4_clouds/1.png",
-      0,
-      0,
-      canvas.width,
-      canvas.height
-    ),
-    new Enviroment(
       "img/5_background/layers/3_third_layer/1.png",
       0,
       0,
@@ -35,6 +28,15 @@ class World {
     ),
     new Enviroment(
       "img/5_background/layers/1_first_layer/1.png",
+      0,
+      0,
+      canvas.width,
+      canvas.height
+    )
+  ];
+  clouds = [
+    new Clouds(
+      "img/5_background/layers/4_clouds/1.png",
       0,
       0,
       canvas.width,
@@ -64,6 +66,7 @@ class World {
 
     //Draw the Clouds and Background
     this.addObjectsToMap(this.enviroment);
+    this.addObjectsToMap(this.clouds);
 
     //Draw the Player
     this.addToMap(this.character);
@@ -81,7 +84,6 @@ class World {
   }
 
   /**
-   *
    * @param {OBJECT} objects Array of Elements to draw
    */
   addObjectsToMap(objects) {
