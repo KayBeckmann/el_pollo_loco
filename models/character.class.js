@@ -23,4 +23,8 @@ class Character extends MovableObject {
   }
 
   jump() {}
+
+  moveLeft() {}
+
+  moveRight() {}
 }
