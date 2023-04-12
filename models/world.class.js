@@ -44,6 +44,7 @@ class World {
     )
   ];
 
+  keyboard;
   canvas;
   ctx;
 
@@ -51,10 +52,16 @@ class World {
    * Initialisation
    * @param {HTML-Element} canvas
    */
-  constructor(canvas) {
+  constructor(canvas, keyboard) {
+    this.keyboard = keyboard;
     this.canvas = canvas;
     this.ctx = canvas.getContext("2d");
     this.draw();
+    this.setKeyboard();
+  }
+
+  setKeyboard() {
+    this.character.keyboard = this.keyboard;
   }
 
   /**
