@@ -20,7 +20,7 @@ class Character extends MovableObject {
       let path = this.IMAGES_WALKING[this.currentImage];
       this.img.src = path;
       this.currentImage = (this.currentImage + 1) % this.IMAGES_WALKING.length;
-    }, 250);
+    }, 150);
   }
 
   jump() {}
