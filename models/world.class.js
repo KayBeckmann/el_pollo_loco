@@ -94,9 +94,15 @@ class World {
 
   /**
    * Draw the Object on the HTML-Canvas
-   * @param {OBJECT} mo
+   * @param {OBJECT} myObject
    */
-  addToMap(mo) {
-    this.ctx.drawImage(mo.img, mo.x, mo.y, mo.width, mo.height);
+  addToMap(myObject) {
+    this.ctx.drawImage(
+      myObject.img,
+      myObject.x,
+      myObject.y,
+      myObject.width,
+      myObject.height
+    );
   }
 }
