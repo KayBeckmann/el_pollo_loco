@@ -21,6 +21,14 @@ class MovableObject {
     });
   }
 
+  animate() {
+    setInterval(() => {
+      let path = this.IMAGES_WALKING[this.currentImage];
+      this.img.src = path;
+      this.currentImage = (this.currentImage + 1) % this.IMAGES_WALKING.length;
+    }, 150);
+  }
+
   moveRight() {
     console.log("moving Right");
   }
