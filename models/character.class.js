@@ -9,7 +9,7 @@ class Character extends MovableObject {
   ];
 
   keyboard;
-  speed = 2;
+  speed = 3;
   //y = 230;
 
   constructor() {
@@ -21,14 +21,23 @@ class Character extends MovableObject {
   animate() {
     setInterval(() => {
       if (this.keyboard.RIGHT) {
-        this.drawWalk();
+        this.otherDirection = false;
         this.moveRight();
       }
       if (this.keyboard.LEFT) {
-        this.drawWalk();
+        this.otherDirection = true;
         this.moveLeft();
       }
-    }, 150);
+    }, 1000 / 60);
+
+    setInterval(() => {
+      if (this.keyboard.RIGHT) {
+        this.drawWalk();
+      }
+      if (this.keyboard.LEFT) {
+        this.drawWalk();
+      }
+    }, 50);
   }
 
   drawWalk() {

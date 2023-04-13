@@ -104,6 +104,12 @@ class World {
    * @param {OBJECT} myObject
    */
   addToMap(myObject) {
+    if (myObject.otherDirection) {
+      this.ctx.save();
+      this.ctx.translate(myObject.width, 0);
+      this.ctx.scale(-1, 1);
+      myObject.x = myObject.x * -1;
+    }
     this.ctx.drawImage(
       myObject.img,
       myObject.x,
@@ -111,5 +117,9 @@ class World {
       myObject.width,
       myObject.height
     );
+    if (myObject.otherDirection) {
+      myObject.x = myObject.x * -1;
+      this.ctx.restore;
+    }
   }
 }
