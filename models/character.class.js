@@ -9,6 +9,8 @@ class Character extends MovableObject {
   ];
 
   keyboard;
+  speed = 2;
+  //y = 230;
 
   constructor() {
     super().loadImages(this.IMAGES_WALKING);
@@ -19,18 +21,29 @@ class Character extends MovableObject {
   animate() {
     setInterval(() => {
       if (this.keyboard.RIGHT) {
-        let path = this.IMAGES_WALKING[this.currentImage];
-        this.img.src = path;
-        this.currentImage =
-          (this.currentImage + 1) % this.IMAGES_WALKING.length;
-        this.x = this.x + 2;
+        this.drawWalk();
+        this.moveRight();
+      }
+      if (this.keyboard.LEFT) {
+        this.drawWalk();
+        this.moveLeft();
       }
     }, 150);
   }
 
+  drawWalk() {
+    let path = this.IMAGES_WALKING[this.currentImage];
+    this.img.src = path;
+    this.currentImage = (this.currentImage + 1) % this.IMAGES_WALKING.length;
+  }
+
   jump() {}
 
-  moveLeft() {}
+  moveLeft() {
+    this.x = this.x - this.speed;
+  }
 
-  moveRight() {}
+  moveRight() {
+    this.x = this.x + this.speed;
+  }
 }
