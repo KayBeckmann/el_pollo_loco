@@ -2,7 +2,16 @@ class World {
   //Generate Player
   character = new Character();
   //Generate Enemies
-  enemies = [new Chicken(), new Chicken(), new Chicken(), new Chicken()];
+  enemies = [
+    new Chicken(),
+    new Chicken(),
+    new Chicken(),
+    new Chicken(),
+    new Chicken(),
+    new Chicken(),
+    new Chicken(),
+    new Chicken()
+  ];
   //Generate Enviroment
   enviroment = [
     new Enviroment(
@@ -32,6 +41,90 @@ class World {
       0,
       canvas.width,
       canvas.height
+    ),
+    new Enviroment(
+      "img/5_background/layers/air.png",
+      719,
+      0,
+      canvas.width,
+      canvas.height
+    ),
+    new Enviroment(
+      "img/5_background/layers/3_third_layer/2.png",
+      719,
+      0,
+      canvas.width,
+      canvas.height
+    ),
+    new Enviroment(
+      "img/5_background/layers/2_second_layer/2.png",
+      719,
+      0,
+      canvas.width,
+      canvas.height
+    ),
+    new Enviroment(
+      "img/5_background/layers/1_first_layer/2.png",
+      719,
+      0,
+      canvas.width,
+      canvas.height
+    ),
+    new Enviroment(
+      "img/5_background/layers/air.png",
+      719 * 2,
+      0,
+      canvas.width,
+      canvas.height
+    ),
+    new Enviroment(
+      "img/5_background/layers/3_third_layer/1.png",
+      719 * 2,
+      0,
+      canvas.width,
+      canvas.height
+    ),
+    new Enviroment(
+      "img/5_background/layers/2_second_layer/1.png",
+      719 * 2,
+      0,
+      canvas.width,
+      canvas.height
+    ),
+    new Enviroment(
+      "img/5_background/layers/1_first_layer/1.png",
+      719 * 2,
+      0,
+      canvas.width,
+      canvas.height
+    ),
+    new Enviroment(
+      "img/5_background/layers/air.png",
+      719 * 3,
+      0,
+      canvas.width,
+      canvas.height
+    ),
+    new Enviroment(
+      "img/5_background/layers/3_third_layer/2.png",
+      719 * 3,
+      0,
+      canvas.width,
+      canvas.height
+    ),
+    new Enviroment(
+      "img/5_background/layers/2_second_layer/2.png",
+      719 * 3,
+      0,
+      canvas.width,
+      canvas.height
+    ),
+    new Enviroment(
+      "img/5_background/layers/1_first_layer/2.png",
+      719 * 3,
+      0,
+      canvas.width,
+      canvas.height
     )
   ];
   clouds = [
@@ -41,10 +134,32 @@ class World {
       0,
       canvas.width,
       canvas.height
+    ),
+    new Clouds(
+      "img/5_background/layers/4_clouds/2.png",
+      719,
+      0,
+      canvas.width,
+      canvas.height
+    ),
+    new Clouds(
+      "img/5_background/layers/4_clouds/1.png",
+      719 * 2,
+      0,
+      canvas.width,
+      canvas.height
+    ),
+    new Clouds(
+      "img/5_background/layers/4_clouds/2.png",
+      719 * 3,
+      0,
+      canvas.width,
+      canvas.height
     )
   ];
 
   keyboard;
+  camera_x = 0;
   canvas;
   ctx;
 
@@ -61,7 +176,7 @@ class World {
   }
 
   setKeyboard() {
-    this.character.keyboard = this.keyboard;
+    this.character.world = this;
   }
 
   /**
@@ -70,6 +185,9 @@ class World {
   draw() {
     //Clear Canvas
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+    //move world left
+    this.ctx.translate(this.camera_x, 0);
 
     //Draw the Clouds and Background
     this.addObjectsToMap(this.enviroment);
@@ -80,6 +198,8 @@ class World {
 
     //Draw the Enemies
     this.addObjectsToMap(this.enemies);
+
+    this.ctx.translate(-this.camera_x, 0);
 
     //'This' kann nicht an Callback direkt übergeben werden
     let self = this;
@@ -103,23 +223,17 @@ class World {
    * Draw the Object on the HTML-Canvas
    * @param {OBJECT} myObject
    */
-  addToMap(myObject) {
-    if (myObject.otherDirection) {
+  addToMap(mo) {
+    if (mo.otherDirection) {
       this.ctx.save();
-      this.ctx.translate(myObject.width, 0);
+      this.ctx.translate(mo.width, 0);
       this.ctx.scale(-1, 1);
-      myObject.x = myObject.x * -1;
+      mo.x = mo.x * -1;
     }
-    this.ctx.drawImage(
-      myObject.img,
-      myObject.x,
-      myObject.y,
-      myObject.width,
-      myObject.height
-    );
-    if (myObject.otherDirection) {
-      myObject.x = myObject.x * -1;
-      this.ctx.restore;
+    this.ctx.drawImage(mo.img, mo.x, mo.y, mo.width, mo.height);
+    if (mo.otherDirection) {
+      mo.x = mo.x * -1;
+      this.ctx.restore();
     }
   }
 }

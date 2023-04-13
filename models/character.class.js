@@ -8,7 +8,7 @@ class Character extends MovableObject {
     "img/2_character_pepe/2_walk/W-26.png"
   ];
 
-  keyboard;
+  world;
   speed = 3;
   //y = 230;
 
@@ -20,21 +20,22 @@ class Character extends MovableObject {
 
   animate() {
     setInterval(() => {
-      if (this.keyboard.RIGHT) {
+      if (this.world.keyboard.RIGHT) {
         this.otherDirection = false;
         this.moveRight();
       }
-      if (this.keyboard.LEFT) {
+      if (this.world.keyboard.LEFT) {
         this.otherDirection = true;
         this.moveLeft();
       }
+      this.world.camera_x = -this.x;
     }, 1000 / 60);
 
     setInterval(() => {
-      if (this.keyboard.RIGHT) {
+      if (this.world.keyboard.RIGHT) {
         this.drawWalk();
       }
-      if (this.keyboard.LEFT) {
+      if (this.world.keyboard.LEFT) {
         this.drawWalk();
       }
     }, 50);
