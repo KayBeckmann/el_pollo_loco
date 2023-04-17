@@ -8,7 +8,8 @@ const level1 = new Level(
     new Chicken(),
     new Chicken(),
     new Chicken(),
-    new Chicken()
+    new Chicken(),
+    new Endboss()
   ],
   [
     new Enviroment("img/5_background/layers/air.png", 0, 0, 720, 480),
