@@ -105,5 +105,6 @@ const level1 = new Level(
     new Clouds("img/5_background/layers/4_clouds/2.png", 719, 0, 720, 480),
     new Clouds("img/5_background/layers/4_clouds/1.png", 719 * 2, 0, 720, 480),
     new Clouds("img/5_background/layers/4_clouds/2.png", 719 * 3, 0, 720, 480)
-  ]
+  ],
+  720 * 3
 );

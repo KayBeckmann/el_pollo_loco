@@ -1,11 +1,9 @@
 class World {
   //Generate Player
   character = new Character();
-  //Generate Enemies
-  enemies = level1.enemies;
-  //Generate Enviroment
-  enviroment = level1.enviroment;
-  clouds = level1.clouds;
+
+  //Generate Level
+  level = level1;
 
   keyboard;
   camera_x = 0;
@@ -39,14 +37,14 @@ class World {
     this.ctx.translate(this.camera_x, 0);
 
     //Draw the Clouds and Background
-    this.addObjectsToMap(this.enviroment);
-    this.addObjectsToMap(this.clouds);
+    this.addObjectsToMap(this.level.enviroment);
+    this.addObjectsToMap(this.level.clouds);
 
     //Draw the Player
     this.addToMap(this.character);
 
     //Draw the Enemies
-    this.addObjectsToMap(this.enemies);
+    this.addObjectsToMap(this.level.enemies);
 
     this.ctx.translate(-this.camera_x, 0);
 
