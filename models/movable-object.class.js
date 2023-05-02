@@ -46,12 +46,12 @@ class MovableObject {
   }
 
   isAboveGround() {
-    return this.y < this.y_Ground;
+    return this.y <= this.y_Ground;
   }
 
   applyGravity() {
     setInterval(() => {
-      if (this.isAboveGround()) {
+      if (this.isAboveGround() || this.y_Speed >= 0) {
         this.y -= this.y_Speed;
         this.y_Speed -= this.acceleration;
       } else {
