@@ -21,7 +21,6 @@ class Character extends MovableObject {
   ];
 
   world;
-  y = 25;
   speed = 3;
   walkingSound = new Audio("../audio/walk.mp3");
 
@@ -78,17 +77,5 @@ class Character extends MovableObject {
     let path = this.IMAGES_JUMPING[this.currentImage];
     this.img.src = path;
     this.currentImage = (this.currentImage + 1) % this.IMAGES_JUMPING.length;
-  }
-
-  jump() {
-    this.y_Speed = 20;
-  }
-
-  moveLeft() {
-    this.x = this.x - this.speed;
-  }
-
-  moveRight() {
-    this.x = this.x + this.speed;
   }
 }

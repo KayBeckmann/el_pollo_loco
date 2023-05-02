@@ -32,17 +32,21 @@ class MovableObject {
       this.img.src = path;
       this.currentImage = (this.currentImage + 1) % this.IMAGES_WALKING.length;
     }, 150);
-    this.moveLeft();
+    setInterval(() => {
+      this.moveLeft();
+    }, 1000 / 60);
+  }
+
+  jump() {
+    this.y_Speed = 20;
   }
 
   moveRight() {
-    console.log("moving Right");
+    this.x = this.x + this.speed;
   }
 
   moveLeft() {
-    setInterval(() => {
-      this.x -= this.speed;
-    }, 1000 / 60);
+    this.x = this.x - this.speed;
   }
 
   isAboveGround() {

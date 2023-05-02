@@ -8,7 +8,7 @@ function init() {
 }
 
 window.addEventListener("keydown", (event) => {
-  if (event.keyCode == 38 || event.keyCode == 87) {
+  if (event.keyCode == 38 || event.keyCode == 87 || event.keyCode == 32) {
     keyboard.UP = true;
   }
   if (event.keyCode == 40 || event.keyCode == 83) {
