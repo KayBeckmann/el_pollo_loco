@@ -20,6 +20,7 @@ class World {
     this.ctx = canvas.getContext("2d");
     this.draw();
     this.setKeyboard();
+    this.checkCollisions();
   }
 
   setKeyboard() {
@@ -91,5 +92,16 @@ class World {
   flipImageBack(mo) {
     mo.x = mo.x * -1;
     this.ctx.restore();
+  }
+
+  checkCollisions() {
+    setInterval(() => {
+      this.level.enemies.forEach((enemy) => {
+        if (this.character.isColliding(enemy)) {
+          this.character.energy -= 5;
+          console.log(this.character.energy);
+        }
+      });
+    }, 200);
   }
 }
