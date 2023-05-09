@@ -20,6 +20,16 @@ class Character extends MovableObject {
     "img/2_character_pepe/3_jump/J-39.png"
   ];
 
+  IMAGES_DEAD = [
+    "img/2_character_pepe/5_dead/D-51.png",
+    "img/2_character_pepe/5_dead/D-52.png",
+    "img/2_character_pepe/5_dead/D-53.png",
+    "img/2_character_pepe/5_dead/D-54.png",
+    "img/2_character_pepe/5_dead/D-55.png",
+    "img/2_character_pepe/5_dead/D-56.png",
+    "img/2_character_pepe/5_dead/D-57.png"
+  ];
+
   world;
   speed = 3;
   walkingSound = new Audio("../audio/walk.mp3");
@@ -27,6 +37,7 @@ class Character extends MovableObject {
   constructor() {
     super().loadImages(this.IMAGES_WALKING);
     this.loadImages(this.IMAGES_JUMPING);
+    this.loadImages(this.IMAGES_DEAD);
     this.loadImage(this.IMAGES_WALKING[0]);
     this.animate();
     this.applyGravity();
@@ -49,17 +60,21 @@ class Character extends MovableObject {
     }, 1000 / 60);
 
     setInterval(() => {
-      if (this.isAboveGround()) {
-        this.drawJump();
-      }
-      if (this.world.keyboard.UP && !this.isAboveGround()) {
-        this.jump();
-      }
-      if (this.world.keyboard.RIGHT && !this.isAboveGround()) {
-        this.drawWalk();
-      }
-      if (this.world.keyboard.LEFT && !this.isAboveGround()) {
-        this.drawWalk();
+      if (!this.isDead()) {
+        if (this.isAboveGround()) {
+          this.drawJump();
+        }
+        if (this.world.keyboard.UP && !this.isAboveGround()) {
+          this.jump();
+        }
+        if (this.world.keyboard.RIGHT && !this.isAboveGround()) {
+          this.drawWalk();
+        }
+        if (this.world.keyboard.LEFT && !this.isAboveGround()) {
+          this.drawWalk();
+        }
+      } else {
+        this.drawDead();
       }
     }, 50);
   }
@@ -77,5 +92,14 @@ class Character extends MovableObject {
     let path = this.IMAGES_JUMPING[this.currentImage];
     this.img.src = path;
     this.currentImage = (this.currentImage + 1) % this.IMAGES_JUMPING.length;
+  }
+
+  drawDead() {
+    if (this.currentImage >= this.IMAGES_WALKING.length) {
+      this.currentImage = 0;
+    }
+    let path = this.IMAGES_DEAD[this.currentImage];
+    this.img.src = path;
+    this.currentImage = (this.currentImage + 1) % this.IMAGES_DEAD.length;
   }
 }
