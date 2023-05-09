@@ -84,6 +84,9 @@ class Character extends MovableObject {
       if (this.world.keyboard.LEFT && !this.isAboveGround()) {
         this.drawAnimation(this.IMAGES_WALKING);
       }
+      if (this.isHurt()) {
+        this.drawAnimation(this.IMAGES_HURT);
+      }
       if (this.isDead()) {
         this.drawAnimation(this.IMAGES_DEAD);
       }
