@@ -19,10 +19,11 @@ class MovableObject extends DrawableObject {
     right: 0
   };
 
-  constructor() {}
+  constructor() {
+    super();
+  }
 
   loadImage(path) {
-    super();
     this.img = new Image();
     this.img.src = path;
   }
