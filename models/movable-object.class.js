@@ -1,4 +1,4 @@
-class MovableObject {
+class MovableObject extends DrawableObject {
   x = 120;
   y = 230;
   y_Ground = 230;
@@ -22,6 +22,7 @@ class MovableObject {
   constructor() {}
 
   loadImage(path) {
+    super();
     this.img = new Image();
     this.img.src = path;
   }
