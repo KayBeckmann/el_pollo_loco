@@ -27,7 +27,144 @@
     <script src="./js/game.js"></script>
   </head>
   <body onload="init()">
-    <h1>El Pollo loco</h1>
-    <canvas id="canvas" width="720" height="480"></canvas>
+    <h1 onclick="restartGame()">( El pollo loco )</h1>
+    <div id="rotate-screen" class="center column pulse">
+      <h2 class="pulsate">Rotate Device</h2>
+    </div>
+    <section id="canva-section">
+      <div id="loading-screen" class="d-none">
+        <h2>
+          <span class="let1">l</span>
+          <span class="let2">o</span>
+          <span class="let3">a</span>
+          <span class="let4">d</span>
+          <span class="let5">i</span>
+          <span class="let6">n</span>
+          <span class="let7">g</span>
+        </h2>
+      </div>
+      <div id="sound-screen" class="center btn-section-top">
+        <div class="icon-sound center pointer" onclick="toggleSounds()">
+          <img id="sound-image" src="./img/icons/volume_on.svg" />
+        </div>
+      </div>
+      <div id="start-screen">
+        <div class="btn-section-top">
+          <div
+            class="icon center pointer"
+            onclick="toggleVisibility('game-controls')"
+          >
+            <img src="./img/icons/controls.svg" />
+            <p>Controls</p>
+          </div>
+          <div
+            class="icon center pointer"
+            onclick="toggleVisibility('game-story')"
+          >
+            <img src="./img/icons/story.svg" />
+            <p>Story</p>
+          </div>
+          <div class="icon center pointer" onclick="startGame()">
+            <img src="./img/icons/start.svg" />
+            <p>Start</p>
+          </div>
+        </div>
+      </div>
+
+      <div
+        id="game-over-screen"
+        class="endscreen center column d-none"
+        onclick="restartGame()"
+      >
+        <h2>( You loose! )</h2>
+        <h3 class="pointer" onclick="restartGame()">try again</h3>
+      </div>
+      <div
+        id="win-screen"
+        class="endscreen center column d-none"
+        onclick="restartGame()"
+      >
+        <h2>( You won! )</h2>
+        <h3 class="pointer" onclick="restartGame()">try again</h3>
+      </div>
+      <div id="game-controls-mobile" class="">
+        <div class="control-left">
+          <div id="control-left" class="center">
+            <img
+              src="./img/icons/arrow.svg"
+              class="controls-img small arrow-left"
+            />
+          </div>
+          <div id="control-right" class="center">
+            <img
+              src="./img/icons/arrow.svg"
+              class="controls-img small arrow-right"
+            />
+          </div>
+        </div>
+        <div class="control-right">
+          <div id="control-throw" class="center">
+            <img
+              src="./img/6_salsa_bottle/salsa_bottle.png"
+              class="controls-img small"
+            />
+          </div>
+          <div id="control-jump" class="center">
+            <img src="./img/icons/arrow.svg" class="controls-img small" />
+          </div>
+        </div>
+      </div>
+      <div
+        id="game-controls"
+        class="endscreen center column d-none"
+        onclick="toggleVisibility('game-controls')"
+      >
+        <h2>Game Controls</h2>
+        <div class="controls-line center">
+          <div class="controls-line-elements">
+            <img src="./img/icons/arrow.svg" class="controls-img arrow-left" />
+            <h3 class="controls-description">Move left</h3>
+          </div>
+        </div>
+        <div class="controls-line center">
+          <div class="controls-line-elements">
+            <img src="./img/icons/arrow.svg" class="controls-img arrow-right" />
+            <h3 class="controls-description">Move right</h3>
+          </div>
+        </div>
+        <div class="controls-line center">
+          <div class="controls-line-elements">
+            <img src="./img/icons/arrow.svg" class="controls-img" />
+            <h3 class="controls-description">Jump</h3>
+          </div>
+        </div>
+        <div class="controls-line center">
+          <div class="controls-line-elements">
+            <p class="controls-img e-throw center">E</p>
+            <h3 class="controls-description">Throw bottle</h3>
+          </div>
+        </div>
+      </div>
+      <div
+        id="game-story"
+        class="endscreen center column d-none"
+        onclick="toggleVisibility('game-story')"
+      >
+        <h2>Pepes challenge</h2>
+        <h3 class="infotext">This is the story of Pepe and El Pollo Loco.</h3>
+        <p class="infotext">
+          El Pollo Loco is a video game in which the character Pepe fights
+          against chickens and collects coins. He must save the village of
+          Pueblo Pequeno from a horde of wild chickens. Pepe fights his way
+          through the chicken farm, dodging obstacles and collecting coins for
+          upgrades. After defeating the leader of the chickens, El Pollo Loco,
+          Pepe is celebrated as a hero.
+        </p>
+      </div>
+      <canvas id="canvas" width="720" height="480"></canvas>
+      <div class="start-screen"></div>
+      <div class="win-screen"></div>
+      <div class="loose-screen"></div>
+    </section>
   </body>
 </html>
